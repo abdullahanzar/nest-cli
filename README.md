@@ -14,6 +14,7 @@ The CLI still supports an optional **API compatibility mode** for existing setup
 - Detailed security guide: `docs/SECURITY.md`
 - API-to-Mongo migration playbook: `docs/MIGRATION.md`
 - Local build and run guide: `docs/BUILD_LOCAL.md`
+- Comprehensive testing guide: `docs/TESTING.md`
 
 ## Open Source Transparency
 `nest-cli` is fully open source.

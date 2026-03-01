@@ -85,7 +85,7 @@ func (b *mongoBackend) ensureIndexes(ctx context.Context) error {
 	if _, err := keys.Indexes().CreateOne(ctx, mongo.IndexModel{Keys: bson.D{{Key: "origin", Value: 1}, {Key: "keyId", Value: 1}}, Options: options.Index().SetUnique(true)}); err != nil {
 		return fmt.Errorf("create keys index: %w", err)
 	}
-	if _, err := versions.Indexes().CreateOne(ctx, mongo.IndexModel{Keys: bson.D{{Key: "_id", Value: 1}}, Options: options.Index().SetUnique(true)}); err != nil {
+	if _, err := versions.Indexes().CreateOne(ctx, mongo.IndexModel{Keys: bson.D{{Key: "_id", Value: 1}}}); err != nil {
 		return fmt.Errorf("create versions index: %w", err)
 	}
 

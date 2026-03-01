@@ -1,0 +1,48 @@
+name: nest-cli tests
+
+on:
+  push:
+    paths:
+      - '**'
+  pull_request:
+    paths:
+      - '**'
+
+jobs:
+  fast-tests:
+    name: Fast Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Download dependencies
+        run: go mod download
+
+      - name: Run fast suite
+        run: go test ./... -count=1
+
+  mongo-integration:
+    name: Mongo Integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Download dependencies
+        run: go mod download
+
+      - name: Run Mongo integration suite
+        env:
+          TESTCONTAINERS_RYUK_DISABLED: 'true'
+        run: go test -tags=integration ./internal/storage -run TestMongoBackendIntegrationFlow -count=1 -v

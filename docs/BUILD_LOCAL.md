@@ -75,6 +75,14 @@ gofmt -w ./cmd ./internal
 go test ./...
 ```
 
+For full test matrix details (command/flag tests, integration tests with Mongo + Docker, CI parity), see `docs/TESTING.md`.
+
+Run Mongo integration tests locally:
+
+```bash
+go test -tags=integration ./internal/storage -run TestMongoBackendIntegrationFlow -count=1
+```
+
 ## Build for Multiple Platforms
 
 Linux amd64:
