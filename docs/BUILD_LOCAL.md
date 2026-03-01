@@ -109,6 +109,29 @@ Windows amd64:
 GOOS=windows GOARCH=amd64 go build -o dist/nest-windows-amd64.exe .
 ```
 
+## Automated GitHub Releases (GoReleaser)
+
+`nest-cli` has repository-local release automation:
+
+- Config: `.goreleaser.yaml`
+- Workflow: `.github/workflows/nest-cli-release.yml`
+
+The workflow runs on tag pushes matching `v*` and publishes release artifacts to GitHub Releases.
+
+To backfill artifacts for an existing tag, run the `nest-cli release` workflow manually from GitHub Actions and provide the tag name in the `tag` input.
+
+Release flow:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+Generated artifacts include:
+- Linux/macOS/Windows binaries
+- `.tar.gz` archives (`.zip` on Windows)
+- `checksums.txt`
+
 ## Quick Functional Smoke Test
 
 Use an isolated config file so your main config is untouched.

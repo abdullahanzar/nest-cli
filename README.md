@@ -16,6 +16,23 @@ The CLI still supports an optional **API compatibility mode** for existing setup
 - Local build and run guide: `docs/BUILD_LOCAL.md`
 - Comprehensive testing guide: `docs/TESTING.md`
 
+## Automated GitHub Releases
+`nest-cli` includes GoReleaser automation scoped to this repository only.
+
+- Release config: `.goreleaser.yaml`
+- GitHub Actions workflow: `.github/workflows/nest-cli-release.yml`
+
+To publish a release:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+This triggers GitHub Actions to build cross-platform binaries, create archives, generate `checksums.txt`, and publish a GitHub Release.
+
+If a tag was created before release automation existed, run the `nest-cli release` workflow manually and pass the tag (for example `v0.1.0`) in the `tag` input to backfill artifacts.
+
 ## Open Source Transparency
 `nest-cli` is fully open source.
 
